@@ -262,6 +262,12 @@ Raven.context(() => {
     });
   }
 
+  webamp.onWillClose(e => {
+    if (!window.confirm("Are you sure you want to close Webamp?")) {
+      e.preventDefault();
+    }
+  });
+
   webamp.renderWhenReady(document.getElementById("app"));
 
   // Expose webamp instance for debugging and integration tests.

@@ -1,4 +1,9 @@
-import { CLOSE_WINAMP, STOP, TOGGLE_VISUALIZER_STYLE } from "../actionTypes";
+import {
+  CLOSE_WINAMP,
+  STOP,
+  TOGGLE_VISUALIZER_STYLE,
+  CLOSE_REQUESTED
+} from "../actionTypes";
 
 export {
   toggleDoubleSizeMode,
@@ -70,8 +75,17 @@ export {
 
 export function close() {
   return dispatch => {
-    dispatch({ type: STOP });
-    dispatch({ type: CLOSE_WINAMP });
+    let defaultPrevented = false;
+    const mockEvent = {
+      preventDefault() {
+        defaultPrevented = true;
+      }
+    };
+    dispatch({ type: CLOSE_REQUESTED, event: mockEvent });
+    if (!defaultPrevented) {
+      dispatch({ type: STOP });
+      dispatch({ type: CLOSE_WINAMP });
+    }
   };
 }
 
