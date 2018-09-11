@@ -1,8 +1,11 @@
+# Changelog
+
 ## Next version
 
 ### Features
 
-Users can pass an initial layout (TODO: Documentation)
+* Users can pass an initial layout (TODO: Documentation)
+* Added an `webamp.onWillClose(cb)` method which allows you to prevent Webamp from closing.
 
 ## 1.1.2
 
