@@ -161,6 +161,17 @@ export default class Webamp {
   public onTrackDidChange(callback: (track: Track) => any): () => void;
 
   /**
+   * A callback which will be called when Webamp is about to closed.
+   *
+   * The callback will be called with an object that resembles an
+   * [event](https://developer.mozilla.org/en-US/docs/Web/API/Event) in that it
+   * implements `preventDefault()`. Call `event.preventDefault()` in your callback to prevent Webamp from closing.
+   *
+   * @returns An "unsubscribe" function. Useful if at some point in the future you want to stop listening to these events.
+   */
+  public onWillClose(callback: (event: {preventDefault: () => void}) => any): () => void;
+
+  /**
    * A callback which will be called when Webamp is closed.
    *
    * @returns An "unsubscribe" function. Useful if at some point in the future you want to stop listening to these events.

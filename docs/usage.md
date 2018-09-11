@@ -216,6 +216,20 @@ const unsubscribe = webamp.onTrackDidChange((track => {
 unsubscribe();
 ```
 
+### `onWillClose(callback)`
+
+A callback which will be called when Webamp is about to closed. Returns an "unsubscribe" function.
+
+The callback will be called with an object that resembles an [event](https://developer.mozilla.org/en-US/docs/Web/API/Event) in that it implements `preventDefault()`. Call `event.preventDefault()` in your callback to prevent Webamp from closing.
+
+```JavaScript
+const unsubscribe = webamp.onWillClose((event) => {
+    if(!window.confirm("Do you really want to close Webamp?")) {
+        event.preventDefault();
+    }
+});
+```
+
 ### `onClose(callback)`
 
 A callback which will be called when Webamp is closed. Returns an "unsubscribe" function.
